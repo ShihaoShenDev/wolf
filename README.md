@@ -1,5 +1,7 @@
 # Wolf - 狼人杀游戏系统 (Werewolf Game System)
 
+*以下内容由AI生成。*
+
 **Wolf** 是一个基于 Python (FastAPI + WebSocket) 开发的狼人杀游戏后端服务，提供 **命令行 (CLI)** 和 **网页 (Web)** 两种客户端，支持多人实时在线对战。
 
 ## 🌟 特性
@@ -20,7 +22,7 @@
 
 1.  **克隆项目**
     ```bash
-    git clone https://github.com/your-repo/wolf.git
+    git clone https://github.com/ShihaoShenDev/wolf.git
     cd wolf
     ```
 
