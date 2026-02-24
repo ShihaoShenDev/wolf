@@ -1,0 +1,276 @@
+:root {
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --accent-color: #e94560;
+    --text-color: #ecf0f1;
+    --secondary-text: #bdc3c7;
+    --alive-color: #2ecc71;
+    --dead-color: #e74c3c;
+    --day-bg: #f1c40f22;
+    --night-bg: #2c3e50;
+    --border-radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    display: none; /* Hidden by default */
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Login Screen */
+#login-screen {
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    margin: auto;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-text);
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #34495e;
+    border-radius: 4px;
+    background: #0f3460;
+    color: white;
+}
+
+button.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+button.btn:hover {
+    background-color: #d6304c;
+}
+
+/* Game Screen Layout */
+#game-screen {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 300px;
+    gap: 1rem;
+    padding: 1rem;
+    height: 100vh;
+}
+
+.game-header {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    align-items: center;
+}
+
+.game-area {
+    grid-column: 1 / 2;
+    overflow-y: auto;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+}
+
+.sidebar {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+/* Player Grid */
+.player-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.player-card {
+    background: var(--card-bg);
+    border: 1px solid #34495e;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.player-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.player-card.dead {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    border-color: var(--dead-color);
+}
+
+.player-status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--alive-color);
+    margin-bottom: 0.5rem;
+}
+
+.player-card.dead .player-status-indicator {
+    background-color: var(--dead-color);
+}
+
+.player-name {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.player-id {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+    margin-bottom: 0.5rem;
+}
+
+.player-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.action-btn {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background: #34495e;
+    color: white;
+}
+
+.action-btn.vote { background: #e67e22; }
+.action-btn.kill { background: #c0392b; }
+.action-btn.save { background: #2ecc71; }
+.action-btn.poison { background: #8e44ad; }
+.action-btn.shoot { background: #d35400; }
+
+/* Chat */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-log {
+    flex: 1;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.chat-msg {
+    margin-bottom: 0.25rem;
+    word-break: break-word;
+}
+
+.chat-msg .sender {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+#chat-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Control Panel */
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+/* Day/Night Specifics */
+body.day-mode {
+    background-color: #2c3e50; /* Slightly lighter for day */
+}
+
+body.night-mode {
+    background-color: #0c0c16; /* Darker for night */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #game-screen {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+    }
+    
+    .sidebar {
+        grid-column: 1 / -1;
+        max-height: 300px;
+    }
+}

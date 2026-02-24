@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolf Game Client</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen active">
+            <h1>Wolf Game Login</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Name:</label>
+                    <input type="text" id="username" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="room-id">Room ID:</label>
+                    <input type="text" id="room-id" required placeholder="Enter room ID">
+                </div>
+                <button type="submit" class="btn primary">Join Game</button>
+            </form>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <header class="game-header">
+                <div class="info-group">
+                    <span class="label">Phase:</span>
+                    <span id="phase-display">Waiting</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">Round:</span>
+                    <span id="round-display">0</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">Role:</span>
+                    <span id="role-display">Unknown</span>
+                </div>
+            </header>
+
+            <main class="game-area">
+                <div id="player-grid" class="player-grid">
+                    <!-- Player cards will be rendered here dynamically -->
+                </div>
+            </main>
+
+            <aside class="sidebar">
+                <div class="chat-container">
+                    <div id="chat-log" class="chat-log">
+                        <div class="system-msg">Welcome to the chat!</div>
+                    </div>
+                    <form id="chat-form">
+                        <input type="text" id="chat-input" placeholder="Type a message...">
+                        <button type="submit" class="btn">Send</button>
+                    </form>
+                </div>
+                
+                <div class="control-panel">
+                    <button id="btn-start-game" class="btn action hidden">Start Game</button>
+                    <button id="btn-end-turn" class="btn action hidden">End Turn</button> <!-- Placeholder if needed -->
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Template for Player Card -->
+    <template id="player-card-template">
+        <div class="player-card">
+            <div class="player-status-indicator"></div>
+            <div class="player-name"></div>
+            <div class="player-id"></div>
+            <div class="player-actions">
+                <!-- Action buttons injected here -->
+            </div>
+        </div>
+    </template>
+
+    <script src="app.js"></script>
+</body>
+</html>
